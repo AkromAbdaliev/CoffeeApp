@@ -1,4 +1,5 @@
 using Coffee.API.Data;
+using Coffee.API.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace Coffee.API
@@ -11,10 +12,12 @@ namespace Coffee.API
 
             // Add services to the container.
 
+            builder.Services.AddDbContext<CoffeeDbContext>(options => options
+               .UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<ICoffeeService, CoffeeService>();
             builder.Services.AddControllers();
 
-            builder.Services.AddDbContext<CoffeeDbContext>(options => options
-               .UseSqlite(builder.Configuration.GetConnectionString("ConnectionString")));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
