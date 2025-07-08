@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Coffee.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Coffee.API.Data
 {
@@ -8,5 +9,6 @@ namespace Coffee.API.Data
             : base(options)
         {
         }
+        public DbSet<CoffeeRecord> CoffeeRecords { get; set; } = null!;
     }
 }
