@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Coffee.API
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -29,7 +29,6 @@ namespace Coffee.API
             }
 
             app.UseHttpsRedirection();
-
 
             app.MapControllers();
 
