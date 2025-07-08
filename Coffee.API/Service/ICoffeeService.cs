@@ -1,11 +1,12 @@
-﻿using Coffee.API.Entities;
+﻿using Coffee.API.DTOs;
+using Coffee.API.Entities;
 
 namespace Coffee.API.Service
 {
     public interface ICoffeeService
     {
-        Task<List<CoffeeRecord>> GetAllAsync();
-        Task<CoffeeRecord?> GetByIdAsync(int id);
-        Task AddAsync(CoffeeRecord record);
+        Task<List<CoffeeRecordDto>> GetAllAsync();
+        Task<CoffeeRecordDto?> GetByIdAsync(int id);
+        Task AddAsync(CreateCoffeeDto record);
     }
 }
