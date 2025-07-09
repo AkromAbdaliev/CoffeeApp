@@ -12,12 +12,13 @@ export class CoffeeListComponent implements OnInit {
   records: Record[] = [];
   constructor(private coffeeService: CoffeeService) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getAllRecords();
   }
 
   getAllRecords() {
     this.coffeeService.getRecords().subscribe((data) => {
       this.records = data as Record[];
+      console.log(this.records);
     });
   }
 }

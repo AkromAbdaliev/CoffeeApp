@@ -12,6 +12,11 @@ namespace Coffee.API
 
             // Add services to the container.
 
+            builder.Services.AddCors(option => option.AddPolicy("CorsPolicy", policy =>
+            {
+                policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
+            }));
+
             builder.Services.AddDbContext<CoffeeDbContext>(options => options
                .UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -32,6 +37,8 @@ namespace Coffee.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("CorsPolicy");
 
             app.MapControllers();
 

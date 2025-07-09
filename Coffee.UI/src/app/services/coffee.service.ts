@@ -7,7 +7,7 @@ import { environment } from '../environment';
   providedIn: 'root',
 })
 export class CoffeeService {
-  private baseUrl = `${environment.apiUrl}/Coffee`;
+  private baseUrl = `${environment.apiUrl}/api/Coffee`;
   constructor(private http: HttpClient) {}
 
   getRecords() {
