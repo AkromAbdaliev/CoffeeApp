@@ -27,6 +27,25 @@ namespace Coffee.API.Service
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
+        public async Task<bool> UpdateAsync(int id, CreateCoffeeDto record)
+        {
+            var exists = await _context.CoffeeRecords.FindAsync(id);
+            if (exists == null) 
+            {
+                return false;
+            }
+            
+            exists.Type = record.Type;
+            exists.Bean = record.Bean;
+            exists.Location = record.Location;
+            exists.NoOfShots = record.NoOfShots;
+            exists.Score = record.Score;
+            exists.Price = record.Price;
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
 
         public async Task DeleteAsync(int id)
         {
@@ -75,5 +94,6 @@ namespace Coffee.API.Service
                 Price = record.Price
             };
         }
+
     }
 }

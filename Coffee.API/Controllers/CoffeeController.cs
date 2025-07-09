@@ -44,6 +44,22 @@ namespace Coffee.API.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] CreateCoffeeDto record) 
+        {
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
+
+            var success = await _coffeeService.UpdateAsync(id, record);
+            if (!success)
+            {
+                return NotFound(new {message = "Record not found!"});
+            }
+            return Ok(new {message = "Record updated successfully."});
+        }
+
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

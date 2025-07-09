@@ -9,5 +9,6 @@ namespace Coffee.API.Service
         Task<CoffeeRecordDto?> GetByIdAsync(int id);
         Task AddAsync(CreateCoffeeDto record);
         Task DeleteAsync(int id);
+        Task<bool> UpdateAsync(int id, CreateCoffeeDto record);
     }
 }
