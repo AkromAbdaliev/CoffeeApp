@@ -28,6 +28,16 @@ namespace Coffee.API.Service
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var record = await _context.CoffeeRecords.FindAsync(id);
+            if(record is not null)
+            {
+                _context.CoffeeRecords.Remove(record);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<CoffeeRecordDto>> GetAllAsync()
         {
             var records = await _context.CoffeeRecords

@@ -44,5 +44,17 @@ namespace Coffee.API.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var exists = await _coffeeService.GetByIdAsync(id);
+            if (exists == null)
+            {
+                return NotFound(new {message = "Record not found or already deleted."});
+            }
+
+            await _coffeeService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }
